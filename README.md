@@ -1,4 +1,4 @@
-# Teste FullStack – Doity  
+# Teste FullStack
 Este repositório contém o desafio técnico para a vaga de FullStack na Doity.
 
 ## 🎯 Objetivo  
