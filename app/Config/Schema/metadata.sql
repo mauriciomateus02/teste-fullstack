@@ -45,3 +45,26 @@ CREATE TABLE employees_services(
     REFERENCES services(id)
     ON DELETE CASCADE 
   )  ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+  CREATE TABLE clients_services (
+    id int(11) NOT NULL AUTO_INCREMENT,
+    client_id int (11) NOT NULL,
+    service_id int(11) NOT NULL,
+    employee_id int(11).
+
+    date_service date NOT NULL,
+
+    PRIMARY KEY (id),
+
+    FOREIGN key(employee_id)
+    REFERENCES employees(id)
+    ON DELETE CASCADE,
+    
+    FOREIGN key(client_id)
+    REFERENCES clients(id)
+    ON DELETE CASCADE,
+
+    FOREIGN key(service_id)
+    REFERENCES services(id)
+    ON DELETE CASCADE 
+  )  ENGINE=InnoDB DEFAULT CHARSET=utf8;
