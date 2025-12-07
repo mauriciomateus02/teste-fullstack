@@ -1,37 +1,33 @@
 <?php
 
-App::uses('AppController','Controller');
+App::uses('AppController', 'Controller');
 
-class ServicesController extends AppController {
+class ServicesController extends AppController
+{
 
-    public function register(){
+    public function register()
+    {
+        if (!empty($this->request->data)) {
 
-         if ($this->request->is('post')) {
             $this->Service->create();
 
             if ($this->Service->save($this->request->data)) {
-                $this->Session->setFlash('Serviço criado com sucesso!');
-                return $this->redirect($this->referer());
+                $this->Flash->success('Serviço cadastrado com sucesso!');
+                return $this->redirect('/services/register');
             } else {
-                $this->Session->setFlash('Erro ao criar o serviço.');
+                $this->Flash->error('Erro ao cadastrar o serviço.');
             }
         }
-
     }
 
-    public function delete(){
+    public function delete() {}
 
-    }
+    public function update() {}
 
-    public function update(){
+    public function list() {}
 
-    }
-
-    public function list(){
-
-    }
-
-    public function index(){
+    public function index()
+    {
         $services = $this->Service->find('all');
         $this->set('services', $services);
     }

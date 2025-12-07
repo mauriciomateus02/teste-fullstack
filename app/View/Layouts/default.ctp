@@ -27,6 +27,7 @@
 		echo $this->Html->meta('icon');
 
 		echo $this->Html->css('https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css'); 
+		echo $this->Html->css('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css'); 
 
 		 echo $this->Html->css('style');
 
@@ -60,5 +61,7 @@
 	    
     <?php echo $this->Html->script('https://code.jquery.com/jquery-3.6.0.min.js'); ?>
     <?php echo $this->Html->script('https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js'); ?>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
