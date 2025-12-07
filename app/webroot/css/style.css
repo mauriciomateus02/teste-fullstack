@@ -14,3 +14,63 @@ footer p {
     margin: 0;
 
 }
+.btn-form-confirm{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 10px 0px 10px;
+    background-color: #FF2B34;
+    color: white;
+}
+.btn-form-cancel{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 10px 0px 10px;
+    background-color: white;
+    color: black;
+    border: 1px solid #D5D7DA;
+}
+.btn-form-cancel:hover{
+    background-color: #f0f0f0;
+}
+
+.btn-form-confirm:hover{
+    background-color: #ff575f;
+    color: white;
+}
+
+.modal-header{
+    border-bottom: 0px;
+}
+
+.modal-body{
+    border-bottom: 0px;
+}
+
+.modal-footer{
+     border-top: 0px;
+}
+.btn-actions{
+    height: 44px;
+    width: 46%;
+}
+
+.input-from-service{
+    width: 100%;
+}
+.btn-form-confirm-modal{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #FF2B34;
+    color: white;
+    padding: 3px 10px 3px 10px;
+}
+
+.bi-action{
+    font-size: 30px;
+}
