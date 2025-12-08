@@ -1,9 +1,30 @@
-body{
+body {
     width: 100%;
     height: 100%;
+    background-color: #FAFAFA;
+    font-family: Inter, sans-serif;
 }
 
-footer{
+.container{
+    width: 60%;
+}
+
+
+header {
+    padding: 10px 10px 10px 0px;
+
+    margin-bottom: 20px;
+
+}
+
+header h1 {
+    font-size: 30px;
+    font-weight: 600;
+    padding: 0px;
+    margin: 0px;
+}
+
+footer {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -14,7 +35,18 @@ footer p {
     margin: 0;
 
 }
-.btn-form-confirm{
+
+.container {
+    padding: 0px;
+    background-color: #FDFDFD;
+    /* border: solid 1px rgb(212, 212, 212); */
+    border-radius: 15px;
+    border: 3px solid #f8f8f8;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.btn-form-confirm {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -23,7 +55,8 @@ footer p {
     background-color: #FF2B34;
     color: white;
 }
-.btn-form-cancel{
+
+.btn-form-cancel {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -33,35 +66,38 @@ footer p {
     color: black;
     border: 1px solid #D5D7DA;
 }
-.btn-form-cancel:hover{
+
+.btn-form-cancel:hover {
     background-color: #f0f0f0;
 }
 
-.btn-form-confirm:hover{
+.btn-form-confirm:hover {
     background-color: #ff575f;
     color: white;
 }
 
-.modal-header{
+.modal-header {
     border-bottom: 0px;
 }
 
-.modal-body{
+.modal-body {
     border-bottom: 0px;
 }
 
-.modal-footer{
-     border-top: 0px;
+.modal-footer {
+    border-top: 0px;
 }
-.btn-actions{
+
+.btn-actions {
     height: 44px;
     width: 46%;
 }
 
-.input-from-service{
+.input-from-service {
     width: 100%;
 }
-.btn-form-confirm-modal{
+
+.btn-form-confirm-modal {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -71,6 +107,191 @@ footer p {
     padding: 3px 10px 3px 10px;
 }
 
-.bi-action{
+.bi-action {
     font-size: 30px;
+}
+
+.header-form {
+    border-bottom: 1px solid rgb(233, 233, 233);
+}
+
+.header-form h2 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0px 0px 3px 0px;
+}
+
+.header-form p {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.line-inputs {
+    display: grid;
+    grid-template-columns: 25% 75%;
+    padding: 20px 10px 0px 0px;
+    border-bottom: 1px solid rgb(233, 233, 233);
+
+}
+
+.labels-input p {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.inputs-name {
+    display: flex;
+    flex-direction: row;
+
+    .form-input {
+        width: 30%;
+        margin-right: 15px;
+    }
+
+}
+
+.designer-email .input-email {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid #D5D7DA;
+    border-radius: 6px;
+    padding: 10px 12px;
+    height: 38px;
+    background: #fff;
+    width: 63%;
+    margin-bottom: 16px;
+}
+
+.designer-email .input-email i {
+    font-size: 18px;
+    color: #888;
+}
+
+.form-control-custom {
+    flex: 1;
+    outline: none;
+    border: none;
+    background: transparent;
+}
+
+.input-phone{
+    width: 63%;
+    margin-bottom: 16px ;
+}
+
+.informations-form{
+    font-size: 14px;
+    font-weight: 400 !important;
+}
+
+.upload-image{
+    display: flex;
+    align-items: center;
+}
+
+.upload-area {
+    width: 48.5%;
+    height: 120px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+.preview-avatar {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+    opacity: 0.7;
+    align-self: flex-start;
+    margin-right: 25px;
+    
+}
+
+.input-file {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    border: 1px solid red;
+}
+
+.preview-icon-upload{
+    width: 40px;
+    height: 40px;
+    opacity: 0.5;
+}
+
+.fw-600 {
+    font-weight: 600;
+}
+
+.labels-input-file{
+    p{
+        margin: 2px;
+    }
+}
+
+.designer-price .input-price {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid #D5D7DA;
+    border-radius: 6px;
+    padding-left: 10px;
+    height: 38px;
+    background: #fff;
+    width: 63%;
+    margin-bottom: 16px;
+}
+
+.designer-price .input-price i {
+    display: flex;
+    align-items: center;
+    border-right: 1px solid #D5D7DA;
+    padding-right: 10px;
+    height: 100%;
+    font-size: 18px;
+    color: #888;
+}
+
+.icon-coin{
+    width: 25px;
+    height: 20px;
+}
+
+.line-btn-actions{
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    width: 100%;
+    margin: 20px 0px 20px 0px;
+
+    .btn-actions{
+        width: 15%;
+        margin-right: 10px;
+    }
+}
+
+.line-actions-service{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    .btn-form-confirm-modal{
+        height: 38px;
+        margin-right: 30px;
+    }
 }
