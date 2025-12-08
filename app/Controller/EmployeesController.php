@@ -5,7 +5,7 @@ App::uses('AppController', 'Controller');
 class EmployeesController extends AppController
 {
 
-    public $uses = array('Employee', 'Service');
+    public $uses = array('Employee', 'Service', 'EmployeeService');
 
     public function register()
     {
@@ -38,6 +38,20 @@ class EmployeesController extends AppController
                 $this->Employee->create();
 
                 if ($this->Employee->save($this->request->data)) {
+
+                    $employeeId = $this->Employee->id;
+
+                    $dataToSave = [];
+
+                    foreach ($this->request->data['services'] as $service) {
+                        $dataToSave[] = [
+                            'employee_id' => $employeeId,
+                            'service_id'  => $service
+                        ];
+                    }
+                    
+                    $this->EmployeeService->saveMany($dataToSave);
+
                     $this->Flash->success('Prestador cadastrado com sucesso!');
                     return $this->redirect('/employees/register');
                 } else {
