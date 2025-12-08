@@ -17,7 +17,7 @@
   border-radius: 999px;
   color: #fff;
   font-weight: 600;
-  background: var(--choice-color); /* usa a cor passada pela option */
+  background: #FF2B34; /* usa a cor passada pela option */
   box-shadow: 0 1px 0 rgba(196, 196, 196, 0.08);
 }
 
@@ -68,7 +68,7 @@
 
 /* A bolha */
 .select2-selection__choice {
-    background: #c0392b !important; 
+    background: #FF2B34 !important; 
     color: #fff !important;
     border: none !important;
     padding: 4px 12px 4px 28px !important; /* espaço à esquerda para o X */
@@ -96,7 +96,7 @@
 
 /* Bolha menor */
 .select2-selection__choice {
-    background: #c0392b !important;
+    background: #FF2B34 !important;
     color: #fff !important;
     border: none !important;
     
@@ -124,7 +124,7 @@
 
 .select2-selection__choice {
     margin-left: 6px !important;  /* empurra a bolha para longe da borda esquerda */
-    background: #c0392b !important;
+    background: #FF2B34 !important;
     color: #fff !important;
     border: none !important;
 
@@ -163,7 +163,7 @@
 /* Ícone de check vermelho */
 .select2-results__option--selected::before {
     content: "✔";
-    color: #c0392b; /* vermelho */
+    color: #FF2B34; /* vermelho */
     font-weight: bold;
     position: absolute;
     left: 6px;

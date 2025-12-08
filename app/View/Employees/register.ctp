@@ -200,4 +200,4 @@
 <?php echo $this->Form->end(); ?>
 
 
-<?php /*echo $this->element('modal-service');*/ ?>
+<?php echo $this->element('modal-service'); ?>

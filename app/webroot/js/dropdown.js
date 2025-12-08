@@ -15,7 +15,7 @@ $(document).ready(function() {
       if (!data.id) return data.text;
 
       // pega cor definida no elemento <option data-color="...">
-      var color = (data.element && $(data.element).data('color')) ? $(data.element).data('color') : '#c0392b';
+      var color = (data.element && $(data.element).data('color')) ? $(data.element).data('color') : '#FF2B34';
 
       // retorna HTML customizado — você pode adicionar classes, ícone, etc.
       return `<span class="my-select-choice" style="--choice-color:${color}">

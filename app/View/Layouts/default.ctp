@@ -73,6 +73,7 @@
 	<?php echo $this->Html->script('mask.js'); ?>
 	<?php echo $this->Html->script('upload-image.js'); ?>
 	<?php echo $this->Html->script('dropdown.js'); ?>
+	<?php echo $this->Html->script('form_restore.js'); ?>
 	
 </body>
 
