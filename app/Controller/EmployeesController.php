@@ -49,7 +49,7 @@ class EmployeesController extends AppController
                             'service_id'  => $service
                         ];
                     }
-                    
+
                     $this->EmployeeService->saveMany($dataToSave);
 
                     $this->Flash->success('Prestador cadastrado com sucesso!');
@@ -63,10 +63,90 @@ class EmployeesController extends AppController
 
     public function delete() {}
 
-    public function update() {}
+    public function update($id = null)
+    {
+        $this->set('title_page', 'Edição de Prestador de Serviço');
+
+        $employee = $this->Employee->findById($id);
+
+        $employeeServices = $this->EmployeeService->find('list', array(
+            'conditions' => array('EmployeeService.employee_id' => $id),
+            'fields' => array('EmployeeService.service_id')
+        ));
+
+        if (!$employee) {
+            throw new NotFoundException("Usuário não encontrado");
+        }
+
+        if ($this->request->is(['post', 'put', 'patch'])) {
+
+            $this->Employee->id = $id;
+
+            $file = $this->request->data['Employee']['image_url'];
+
+            if (isset($file) && is_array($file) && $file['error'] === 0) {
+
+                $filename = time() . '_' . preg_replace('/[^a-zA-Z0-9.\-_]/', '_', $file['name']);
+
+                move_uploaded_file(
+                    $file['tmp_name'],
+                    WWW_ROOT . 'img/' . $filename
+                );
+
+                $this->request->data['Employee']['image_url'] = $filename;
+            } else {
+                $this->request->data['Employee']['image_url'] = $employee['Employee']['image_url'];
+            }
+
+
+
+            if ($this->Employee->save($this->request->data)) {
+                $this->Flash->success(__('Prestador atualizado com sucesso.'));
+
+                $currentServices = array_values($employeeServices);
+                $newServices = isset($this->request->data['services']) ? $this->request->data['services'] : array();
+
+
+                $toAdd = array_diff($newServices, $currentServices);
+                $toRemove = array_diff($currentServices, $newServices);
+
+                if (!empty($toRemove)) {
+                    $this->EmployeeService->deleteAll(array(
+                        'EmployeeService.employee_id' => $id,
+                        'EmployeeService.service_id' => $toRemove
+                    ));
+                }
+
+                if (!empty($toAdd)) {
+                    $dataToSave = [];
+
+                    foreach ($toAdd as $service) {
+                        $dataToSave[] = [
+                            'employee_id' => $id,
+                            'service_id'  => $service
+                        ];
+                    }
+
+                    $this->EmployeeService->saveMany($dataToSave);
+                }
+
+                return $this->redirect(['action' => 'index']);
+            }
+
+            $this->Flash->error(__('Erro ao atualizar.'));
+        }
+
+        $this->request->data = $employee;
+
+        $services = $this->Service->find('all');
+
+        $this->set(compact('employee', 'services', 'employeeServices'));
+    }
 
     public function index()
     {
+        $this->set('title_page', 'Cadastro de Prestador de Serviço');
+
         $employees = $this->Employee->find('all');
         $this->set('employees', $employees);
     }
