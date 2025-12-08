@@ -7,14 +7,18 @@ if (!empty($params['class'])) {
     if (strpos($params['class'], 'warning') !== false) $toastClass = 'text-bg-warning';
 }
 ?>
-<div class="toast align-items-center <?php echo $toastClass; ?> border-0 show position-fixed bottom-0 end-0 m-3"
-     role="alert" aria-live="assertive" aria-atomic="true" id="<?php echo $key; ?>Toast">
-    <div class="d-flex">
-        <div class="toast-body">
-            <?php echo h($message); ?>
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div class="toast <?php echo $toastClass; ?> border-0"
+         role="alert" aria-live="assertive" aria-atomic="true"
+         id="<?php echo $key; ?>Toast"
+         data-bs-autohide="true" data-bs-delay="3000">
+        <div class="d-flex">
+            <div class="toast-body">
+                <?php echo h($message); ?>
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto"
+                    data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
-        <button type="button" class="btn-close btn-close-white me-2 m-auto"
-                data-bs-dismiss="toast" aria-label="Close"></button>
     </div>
 </div>
 

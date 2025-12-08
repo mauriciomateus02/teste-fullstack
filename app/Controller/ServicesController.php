@@ -13,7 +13,7 @@ class ServicesController extends AppController
 
             if ($this->Service->save($this->request->data)) {
                 $this->Flash->success('Serviço cadastrado com sucesso!');
-                return $this->redirect('/services/register');
+                return $this->redirect('/employees/register');
             } else {
                 $this->Flash->error('Erro ao cadastrar o serviço.');
             }
@@ -23,8 +23,6 @@ class ServicesController extends AppController
     public function delete() {}
 
     public function update() {}
-
-    public function list() {}
 
     public function index()
     {

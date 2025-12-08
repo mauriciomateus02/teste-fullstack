@@ -16,6 +16,7 @@ CREATE TABLE clients{
 CREATE TABLE employees(
     id int(11) NOT NULL AUTO_INCREMENT,
     name varchar(255) NOT NULL,
+    last_name varchar(255) NOT NULL,
     email varchar(255) NOT NULL UNIQUE,
     image_url varchar(255),
     phone varchar(13) NOT NULL,
