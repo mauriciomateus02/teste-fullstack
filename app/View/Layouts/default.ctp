@@ -34,6 +34,7 @@
 
 	echo $this->Html->css('style');
 	echo $this->Html->css('dropdown');
+	echo $this->Html->css('index-employee');
 
 	echo $this->fetch('meta');
 	echo $this->fetch('css');
@@ -49,10 +50,9 @@
 	<?php echo $this->Flash->render(); ?>
 	<div class="container">
 		<header>
-			<h1><?php echo $title_page; ?></h1>
+			
 		</header>
 		<div class="content">
-
 			<?php echo $this->fetch('content'); ?>
 		</div>
 		<footer>

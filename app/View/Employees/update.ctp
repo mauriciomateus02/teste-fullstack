@@ -1,7 +1,8 @@
+<h1><?php echo $title_page; ?></h1>
+
 <div class="header-form">
     <?php
-    echo $this->Html->tag('h2', 'Informações pessoais');
-    echo $this->Html->tag('p', 'Cadastre suas informações e adicione uma foto. ');
+    echo $this->Html->tag('p', 'Informações pessoais.');
     ?>
 </div>
 
