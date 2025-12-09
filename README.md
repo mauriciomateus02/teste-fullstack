@@ -10,11 +10,17 @@ Antes de rodar o projeto, certifique-se de ter os seguintes itens instalados:
 - Composer
 - CakePHP (já presente no projeto)
 
+
+[Video sobre o sistema](https://drive.google.com/file/d/1wcb0v4NKfDZkpM0VcALgBeGSVi2dh1Gr/view?usp=sharing)
+
 ## Configuração do Banco de Dados
 
 1. Abra o **XAMPP Control Panel** e inicie o **Apache** e o **MySQL**.
 2. Acesse o **phpMyAdmin** (normalmente em `http://localhost/phpmyadmin`) e crie o banco de dados para o projeto.
 3. No CakePHP, configure o banco de dados editando o arquivo:
+
+
+
 
 
 Procure a seção `'Datasources'` e configure os seguintes parâmetros:
@@ -33,6 +39,3 @@ Procure a seção `'Datasources'` e configure os seguintes parâmetros:
         'timezone' => 'UTC',
     ],
 ],
-
-
-[Video sobre o sistema](https://www.apachefriends.org/pt_br/index.html](https://drive.google.com/file/d/1wcb0v4NKfDZkpM0VcALgBeGSVi2dh1Gr/view?usp=sharing)
