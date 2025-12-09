@@ -61,14 +61,18 @@ div.pagination {
 
 ul.pagination {
     margin: 0;
-
+    
     span {
         border: 1px solid #D5D7DA;
         margin-right: 10px;
         padding: 5px 10px 5px 10px;
         border-radius: 8px;
         font-weight: 600;
-
+        text-decoration: none;
+        a{
+            text-decoration: none;
+            color: black;
+        }
     }
 }
 

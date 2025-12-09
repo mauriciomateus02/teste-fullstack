@@ -93,4 +93,16 @@ $(document).ready(function() {
     $('#modalUploadServidores').on('hidden.bs.modal', function() {
         $('#removeFile').click();
     });
+
+     // Ao submeter o formulário com sucesso
+    $('#formUploadServidores').on('submit', function() {
+        // Fechar o modal de upload
+        $('#modalUploadServidores').modal('hide');
+        
+        // Aguardar um pouco e mostrar modal de sucesso
+        setTimeout(function() {
+            showSuccessModal();
+        }, 300);
+    });
+
 });

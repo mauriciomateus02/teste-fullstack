@@ -75,7 +75,7 @@
             'id' => 'preview-img'
         )); ?>
 
-        <div class="upload-area" id="uploadArea">
+        <div class="upload-area" id="uploadArea1">
             <div class="designer-submit-file">
                 <?php echo $this->Html->image('upload.png', array(
                     'class' => 'preview-icon-upload',

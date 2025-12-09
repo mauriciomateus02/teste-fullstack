@@ -76,7 +76,7 @@
                                 'id' => 'preview-img'
                             ]);
                         } else {
-                            
+
                             $iniciais = mb_substr($emp['Employee']['name'], 0, 1) . mb_substr($emp['Employee']['last_name'], 0, 1);
                             echo $this->Html->tag(
                                 'div',
@@ -116,17 +116,15 @@
                                 'escape' => false
 
                             ]);
-
-                            echo $this->Form->postLink('<i class="bi bi-trash"></i>', [
-                                'controller' => 'employees',
-                                'action' => 'delete',
-                                $emp['Employee']['id']
-                            ], [
-                                'confirm' => 'Deseja realmente excluir?',
-                                'class' => 'btn-list-action',
-                                'escape' => false
-                            ]);
                             ?>
+                            <a
+                                class="btn btn-list-action"
+                                data-bs-toggle="modal"
+                                data-bs-target="#deleteModal"
+                                data-employee-id="<?php echo $emp['Employee']['id']; ?>"
+                                data-employee-name="<?php echo $emp['Employee']['name']; ?>">
+                                <i class="bi bi-trash"></i>
+                            </a>
                         </div>
                     </td>
                 </tr>
@@ -136,18 +134,17 @@
     </table>
 
     <div class="pagination">
-        <?php 
-            $current_page = $this->Paginator->params()['page'];
-            $max_page = $this->Paginator->params()['pageCount'];
+        <?php
+        $current_page = $this->Paginator->params()['page'];
+        $max_page = $this->Paginator->params()['pageCount'];
 
-            echo $this->Html->tag('p','Página '.$current_page.' de '.$max_page,array(
-                'class' => 'label-pages'
-            ));
+        echo $this->Html->tag('p', 'Página ' . $current_page . ' de ' . $max_page, array(
+            'class' => 'label-pages'
+        ));
         ?>
         <ul class="pagination">
             <?php
             echo $this->Paginator->prev('Anterior', array(), null, array('class' => 'disabled'));
-            echo $this->Paginator->numbers(array('separator' => ' '));
             echo $this->Paginator->next('Próximo', array(), null, array('class' => 'disabled'));
             ?>
         </ul>
@@ -155,3 +152,5 @@
 </div>
 
 <?php echo $this->element('modal-upload'); ?>
+<?php echo $this->element('modal-success-employee'); ?>
+<?php echo $this->element('modal-delete-employee'); ?>

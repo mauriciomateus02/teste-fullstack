@@ -36,6 +36,7 @@
 	echo $this->Html->css('dropdown');
 	echo $this->Html->css('index-employee');
 	echo $this->Html->css('modal-upload');
+	echo $this->Html->css('modal-success');
 	echo $this->Html->css('toast');
 
 	echo $this->fetch('meta');
@@ -105,6 +106,8 @@
 	echo $this->Html->script('dropdown.js');
 	echo $this->Html->script('form_restore.js');
 	echo $this->Html->script('modal-upload.js');
+	echo $this->Html->script('delete-employee.js');
+	echo $this->Html->script('modal-success.js');
 	echo $this->Html->script('toast.js');
 	?>
 

@@ -3,10 +3,10 @@
 App::uses('AppController', 'Controller');
 class EmployeesController extends AppController
 {
-    
+
 
     public $uses = array('Employee', 'Service', 'EmployeeService');
-    public $components = array('Paginator','Session');
+    public $components = array('Paginator', 'Session');
 
     public function register()
     {
@@ -62,7 +62,34 @@ class EmployeesController extends AppController
         }
     }
 
-    public function delete() {}
+    public function delete()
+    {
+
+        if (!$this->request->is('post')) {
+            throw new MethodNotAllowedException();
+        }
+
+        $id = $this->request->data['Employee']['id'];
+
+        if (!$id) {
+            $this->Flash->error(__('ID não fornecido.'));
+            return $this->redirect(['action' => 'index']);
+        }
+
+        if (!$this->Employee->exists($id)) {
+            throw new NotFoundException(__('Prestador não encontrado.'));
+        }
+
+        if ($this->Employee->delete($id)) {
+            $this->EmployeeService->deleteAll(['EmployeeService.employee_id' => $id]);
+
+            $this->Flash->success(__('Prestador excluído com sucesso.'));
+        } else {
+            $this->Flash->error(__('Não foi possível excluir o prestador. Tente novamente.'));
+        }
+
+        return $this->redirect(['action' => 'index']);
+    }
 
     public function update($id = null)
     {
