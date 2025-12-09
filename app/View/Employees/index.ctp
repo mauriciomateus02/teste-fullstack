@@ -5,7 +5,7 @@
 
     </div>
     <div class="header-btns">
-        <button type="button" class="btn btn-form-confirm btn-actions btn-import" data-bs-toggle="modal" data-bs-target="#serviceModal">
+        <button type="button" class="btn btn-form-confirm btn-actions btn-import" data-bs-toggle="modal" data-bs-target="#modalUploadEmployees">
             <i class="bi bi-upload bi-action"></i>Importar
         </button>
         <?php
@@ -153,3 +153,5 @@
         </ul>
     </div>
 </div>
+
+<?php echo $this->element('modal-upload'); ?>
