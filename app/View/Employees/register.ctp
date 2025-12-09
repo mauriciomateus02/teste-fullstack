@@ -1,3 +1,5 @@
+<h1><?php echo $title_page; ?></h1>
+
 <div class="header-form">
     <?php
     echo $this->Html->tag('h2', 'Informações pessoais');
@@ -149,7 +151,7 @@
             ?>
         </select>
 
-        <button type="button" class="btn btn-form-confirm-modal" data-bs-toggle="modal" data-bs-target="#serviceModal">
+        <button type="button" class="btn btn-form-confirm-modal btn-form-confirm" data-bs-toggle="modal" data-bs-target="#serviceModal">
             <i class="bi bi-plus bi-action"></i>Cadastrar serviço
         </button>
     </div>

@@ -6,6 +6,7 @@ class EmployeesController extends AppController
 {
 
     public $uses = array('Employee', 'Service', 'EmployeeService');
+    public $components = array('Paginator');
 
     public function register()
     {
@@ -145,9 +146,32 @@ class EmployeesController extends AppController
 
     public function index()
     {
-        $this->set('title_page', 'Cadastro de Prestador de Serviço');
+        $this->set('title_page', 'Prestadores de Serviço');
 
-        $employees = $this->Employee->find('all');
-        $this->set('employees', $employees);
+        // $employees = $this->Employee->find('all');
+        // $this->set('employees', $employees);
+
+        $conditions = array();
+
+        // Se existir busca
+        if (!empty($this->request->query['q'])) {
+            $q = trim($this->request->query['q']);
+
+            $conditions['OR'] = array(
+                'Employee.name LIKE' => "%$q%",
+                'Employee.last_name LIKE' => "%$q%",
+                'Employee.email LIKE' => "%$q%"
+            );
+        }
+
+        $this->Paginator->settings = array(
+            'conditions' => $conditions,
+            'limit' => 6, 
+            'order' => array('Employee.id' => 'DESC')
+        );
+
+        $employees = $this->Paginator->paginate('Employee');
+
+        $this->set(compact('employees'));
     }
 }
