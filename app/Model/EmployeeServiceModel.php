@@ -14,6 +14,8 @@ class EmployeeServiceModel extends AppModel{
             'foreignKey' => 'service_id'
         )
     );
+
+    public $actsAs = array('Containable');
 }
 
 ?>

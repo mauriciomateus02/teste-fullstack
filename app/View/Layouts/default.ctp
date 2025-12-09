@@ -108,6 +108,7 @@
 	echo $this->Html->script('modal-upload.js');
 	echo $this->Html->script('delete-employee.js');
 	echo $this->Html->script('modal-success.js');
+	echo $this->Html->script('search-employee.js');
 	echo $this->Html->script('toast.js');
 	?>
 

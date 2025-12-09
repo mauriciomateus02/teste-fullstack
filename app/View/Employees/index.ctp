@@ -24,9 +24,16 @@
     </div>
 </div>
 
-
 <div class="designer-search">
-    <?php $this->Form->create() ?>
+    <?php
+    // Adicione o método GET e uma ação clara
+    echo $this->Form->create('Employee', [
+        'type' => 'get',
+        'url' => ['controller' => 'employees', 'action' => 'index'],
+        'id' => 'searchForm',
+        'class' => 'search-form'
+    ]);
+    ?>
     <div class="input-search">
         <i class="bi bi-search"></i>
         <?php
@@ -37,17 +44,17 @@
                 'class' => 'border-0 form-control-custom',
                 'label' => false,
                 'div' => false,
-                'placeholder' => 'Buscar'
+                'placeholder' => 'Buscar',
+                'id' => 'searchInput',
+                'value' => isset($this->request->query['q']) ? $this->request->query['q'] : ''
             )
-
-        )
+        );
         ?>
     </div>
-    <?php $this->Form->end() ?>
+    <?php echo $this->Form->end(); ?>
 </div>
 
 <div class="search-box" style="margin-bottom: 20px;">
-    <!-- GET para manter a URL amigável -->
 
 </div>
 <div class="container-table">
@@ -55,7 +62,7 @@
         <thead>
             <th><?php echo $this->Paginator->sort('name', 'Prestador'); ?></th>
             <th><?php echo $this->Paginator->sort('phone', 'Telefone'); ?></th>
-            <th><?php echo $this->Paginator->sort('email', 'Serviços'); ?></th>
+            <th>Serviços</th>
             <th><?php echo $this->Paginator->sort('price', 'Valor'); ?></th>
             <th></th>
         </thead>
@@ -99,7 +106,16 @@
                         <div class="label-employee"><?php echo  $this->Html->tag('p', ($emp['Employee']['phone'])); ?></div>
                     </td>
                     <td>
-                        <div class="label-employee"><?php echo  $this->Html->tag('p', ($emp['Employee']['email'])); ?></div>
+                        <div class="label-employee">
+                            <?php
+                           
+                            if (!empty($emp['Service'])) {
+                                echo implode(', ', $emp['Service']);
+                            } else {
+                                echo 'Nenhum serviço atribuído';
+                            }
+                            ?>
+                        </div>
                     </td>
                     <td>
                         <div class="label-employee"><?php echo  $this->Html->tag('p', 'R$ ' . ($emp['Employee']['price'])); ?></div>
