@@ -64,7 +64,7 @@ class ServicesController extends AppController
                 );
             }
 
-            return $this->redirect(array('action' => 'index'));
+            return $this->redirect('/employees/register');
         }
     }
 
