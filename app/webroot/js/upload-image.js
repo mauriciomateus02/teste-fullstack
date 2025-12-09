@@ -7,7 +7,7 @@ $(document).on('change', '#upload-photo', function (e) {
 });
 
 $(document).ready(function () {
-    var uploadArea = $('#uploadArea');
+    var uploadArea = $('#uploadArea1');
     var fileInput = $('#upload-photo');
     var previewImage = $('#preview-image');
     var originalSrc = previewImage.attr('src');
