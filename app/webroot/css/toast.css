@@ -1,0 +1,32 @@
+.message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    z-index: 9999;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Mostrar toast */
+.message.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Sucesso */
+.message.success {
+    background-color: #28a745;   /* verde */
+    color: #fff;
+    border-left: 5px solid #218838; /* detalhe lateral */
+}
+
+/* Erro */
+.message.error {
+    background-color: #dc3545;   /* vermelho */
+    color: #fff;
+    border-left: 5px solid #b02a37; /* detalhe lateral */
+}

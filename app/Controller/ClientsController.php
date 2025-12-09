@@ -16,10 +16,6 @@ class ClientsController extends AppController {
 
     }
 
-    public function list(){
-
-    }
-
     public function index(){
         
     }

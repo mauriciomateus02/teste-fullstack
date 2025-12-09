@@ -1,0 +1,29 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "PHP: Listen Xdebug",
+      "type": "php",
+      "request": "launch",
+      "port": 9003,
+      "pathMappings": {
+        "/var/www/html": "${workspaceFolder}"
+      }
+    },
+    {
+      "name": "Browser: Open localhost",
+      "type": "msedge",
+      "request": "launch",
+      "url": "http://localhost:8000",
+      "webRoot": "${workspaceFolder}",
+      "runtimeArgs": ["--new-window"]
+    }
+  ],
+  "compounds": [
+    {
+      "name": "PHP + Browser (F5)",
+      "configurations": ["PHP: Listen Xdebug", "Browser: Open localhost"],
+      "stopAll": true
+      }
+    ]
+}

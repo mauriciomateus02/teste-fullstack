@@ -1,0 +1,172 @@
+/* remove o fundo padrão (mantém comportamento de remoção do X) */
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 3px 6px 3px 0;
+  height: auto;
+  line-height: normal;
+}
+
+/* seu HTML interno (a "tag" visual real) */
+.my-select-choice {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  color: #fff;
+  font-weight: 600;
+  background: #FF2B34; /* usa a cor passada pela option */
+  box-shadow: 0 1px 0 rgba(196, 196, 196, 0.08);
+}
+
+/* ícone de check (usa a mesma cor do texto) */
+.my-select-choice .my-choice-check {
+  color: rgba(255,255,255,0.95);
+  flex-shrink: 0;
+}
+
+/* texto dentro da tag */
+.my-select-choice .my-choice-text { 
+  display: inline-block;
+}
+
+/* mantém o X de remoção visível e ajustado */
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+  color: rgba(255,255,255,0.95);
+  margin-left: 6px;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+/* opcional: ajustar o hover da lista */
+.select2-results__option--highlighted {
+  background: rgba(170, 157, 157, 0.06) !important;
+  color: inherit !important;
+}
+
+/* Corrige a posição do X */
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+  position: relative;
+  padding-left: 24px !important; /* espaço para o X */
+}
+
+/* Estilo do X */
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  
+  color: #fff !important;
+  font-size: 14px;
+  font-weight: bold;
+
+  cursor: pointer;
+}
+
+
+/* A bolha */
+.select2-selection__choice {
+    background: #FF2B34 !important; 
+    color: #fff !important;
+    border: none !important;
+    padding: 4px 12px 4px 28px !important; /* espaço à esquerda para o X */
+    border-radius: 7px !important;
+    position: relative;
+    margin-left: 5px;
+}
+
+/* Botão de remover dentro da bolha */
+.select2-selection__choice__remove {
+    position: absolute !important;
+    left: 10px; /* fica dentro da bolha */
+    top: 50%;
+    transform: translateY(-50%);
+    
+    color: #fff !important;
+    font-size: 14px !important;
+    font-weight: bold;
+
+    cursor: pointer;
+    background: transparent !important; /* remove fundo cinza */
+    border: none !important;
+}
+
+
+/* Bolha menor */
+.select2-selection__choice {
+    background: #FF2B34 !important;
+    color: #fff !important;
+    border: none !important;
+    
+    font-size: 12px !important;        /* fonte menor */
+    
+    padding: 5px 10px 2px 24px !important; /* menos espaço interno */
+    border-radius: 8px !important;        /* bordas menores */
+    
+    position: relative;
+}
+
+/* X menor e ajustado */
+.select2-selection__choice__remove {
+    position: absolute !important;
+    left: 8px; /* ajusta posição */
+    top: 50%;
+    transform: translateY(-50%);
+    
+    font-size: 12px !important; /* diminui o X */
+    color: #fff !important;
+
+    background: transparent !important;
+    cursor: pointer;
+}
+
+.select2-selection__choice {
+    margin-left: 6px !important;  /* empurra a bolha para longe da borda esquerda */
+    background: #FF2B34 !important;
+    color: #fff !important;
+    border: none !important;
+
+    font-size: 12px !important;
+    padding: 2px 10px 2px 24px !important;
+    border-radius: 14px !important;
+    position: relative;
+}
+
+.select2-selection__choice__remove {
+    position: absolute !important;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 12px !important;
+    color: #fff !important;
+    background: transparent !important;
+}
+
+.select2-container--default .select2-selection--multiple {
+    border: 1px solid #D5D7DA !important; /* muda a borda */
+    border-radius: 8px !important;       /* opcional */
+}
+
+.select2-container--default .select2-dropdown {
+    border: 2px solid #D5D7DA !important;
+    border-radius: 8px !important;
+}
+
+/* Marca visual dentro da lista suspensa */
+.select2-results__option--selected {
+    position: relative;
+    padding-left: 24px !important; /* espaço para o ícone */
+}
+
+/* Ícone de check vermelho */
+.select2-results__option--selected::before {
+    content: "✔";
+    color: #FF2B34; /* vermelho */
+    font-weight: bold;
+    position: absolute;
+    left: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+}

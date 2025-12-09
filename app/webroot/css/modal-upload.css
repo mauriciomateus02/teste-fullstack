@@ -1,0 +1,138 @@
+.modal-body {
+    .upload-area {
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        padding: 40px;
+        transition: all 0.3s;
+        width: 100%;
+        height: fit-content;
+        position: relative;
+        /* necessário para o input absoluto dentro */
+        cursor: pointer;
+    }
+}
+
+.modal-body {
+    .upload-area:hover {
+        border-color: #e2e2e2;
+        background-color: #f8f9fa;
+    }
+}
+
+.modal-body {
+    .upload-area.drag-over {
+        border-color: #28a745;
+        background-color: #e8f5e9;
+    }
+}
+
+.modal-body {
+    .upload-area input[type="file"] {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        /* invisível, mas clicável */
+        cursor: pointer;
+    }
+}
+
+.file-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background: #f5f5f5;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.file-item i {
+    margin-right: 10px;
+    color: #dc3545;
+}
+
+.file-item span {
+    flex: 1;
+}
+
+.progress {
+    height: 30px;
+    margin-bottom: 0;
+}
+
+.progress-bar {
+    line-height: 30px;
+}
+
+#removeFile {
+    color: black;
+    font-size: 18px;
+}
+
+.progress-bar-custom {
+    height: 100%;
+    background-color: #FF2B34;
+    /* <-- AQUI! Altere esta cor */
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+.progress-wrapper {
+    position: relative;
+    height: 8px;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+
+.progress-text {
+    text-align: right;
+    font-size: 13px;
+    font-weight: 500;
+    color: #333;
+}
+
+.file-preview-box {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.file-icon-wrapper {
+    margin-right: 15px;
+    color: #FF2B34;
+}
+
+.file-icon {
+    font-size: 40px;
+    color: #dc3545;
+}
+
+.file-info {
+    flex: 1;
+}
+
+.file-name {
+    font-weight: 500;
+    color: #333;
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+.file-size {
+    color: #666;
+    font-size: 13px;
+}
+
+.file-status {
+    margin-left: auto;
+    color: #FF2B34;
+}
