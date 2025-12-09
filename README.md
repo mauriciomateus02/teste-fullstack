@@ -8,7 +8,7 @@ Antes de rodar o projeto, certifique-se de ter os seguintes itens instalados:
 
 - [XAMPP](https://www.apachefriends.org/pt_br/index.html) (Apache, MySQL/MariaDB e PHP)
 - Composer
-- CakePHP (instalado via Composer ou já presente no projeto)
+- CakePHP (já presente no projeto)
 
 ## Configuração do Banco de Dados
 
