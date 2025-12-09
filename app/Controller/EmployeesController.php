@@ -1,12 +1,12 @@
 <?php
 
 App::uses('AppController', 'Controller');
-
 class EmployeesController extends AppController
 {
+    
 
     public $uses = array('Employee', 'Service', 'EmployeeService');
-    public $components = array('Paginator');
+    public $components = array('Paginator','Session');
 
     public function register()
     {
@@ -166,12 +166,159 @@ class EmployeesController extends AppController
 
         $this->Paginator->settings = array(
             'conditions' => $conditions,
-            'limit' => 6, 
+            'limit' => 6,
             'order' => array('Employee.id' => 'DESC')
         );
 
         $employees = $this->Paginator->paginate('Employee');
 
         $this->set(compact('employees'));
+    }
+
+    public function uploadFile()
+    {
+        if ($this->request->is('post')) {
+            try {
+                // Verificar se o arquivo foi enviado
+                if (empty($this->request->data['Employee']['list_employees']['tmp_name'])) {
+                    throw new Exception('Nenhum arquivo foi enviado.');
+                }
+
+                $arquivo = $this->request->data['Employee']['list_employees'];
+
+                $this->validarArquivo($arquivo);
+
+                $dados = $this->loadExcel($arquivo['tmp_name']);
+
+                $resultado = $this->createEmployees($dados);
+
+                $this->Session->setFlash(
+                    sprintf('Upload concluído! %d funcionários criados com sucesso.', $resultado['sucesso']),
+                    'default',
+                    array('class' => 'alert alert-success')
+                );
+
+                if ($resultado['erros'] > 0) {
+                    $this->Session->setFlash(
+                        sprintf('Atenção: %d registros não foram importados.', $resultado['erros']),
+                        'default',
+                        array('class' => 'alert alert-warning')
+                    );
+                }
+            } catch (Exception $e) {
+                $this->Session->setFlash(
+                    'Erro ao processar arquivo: ' . $e->getMessage(),
+                    'default',
+                    array('class' => 'alert alert-danger')
+                );
+            }
+
+            return $this->redirect(array('action' => 'index'));
+        }
+    }
+
+    private function validarArquivo($arquivo)
+    {
+        if ($arquivo['size'] > 25 * 1024 * 1024) {
+            throw new Exception('Arquivo muito grande. Máximo 25 MB.');
+        }
+
+        $ext = strtolower(pathinfo($arquivo['name'], PATHINFO_EXTENSION));
+        if (!in_array($ext, array('xls', 'xlsx'))) {
+            throw new Exception('Formato inválido. Apenas XLS ou XLSX.');
+        }
+
+        if ($arquivo['error'] !== UPLOAD_ERR_OK) {
+            throw new Exception('Erro no upload do arquivo.');
+        }
+
+        return true;
+    }
+
+    private function loadExcel($caminhoArquivo)
+    {
+        // Importar SimpleXLSX dentro do método
+        require_once APP . 'Vendor' . DS . 'SimpleXLSX.php';
+
+        try {
+            // Carregar o arquivo Excel
+            if ($xlsx = \Shuchkin\SimpleXLSX::parse($caminhoArquivo)) {
+                $rows = $xlsx->rows();
+                $dados = array();
+
+                // Pular a primeira linha (cabeçalho) e processar as demais
+                foreach ($rows as $key => $row) {
+                    // Pular linha de cabeçalho (índice 0)
+                    if ($key === 0) {
+                        continue;
+                    }
+
+                    // Processar apenas se a linha não estiver vazia
+                    if (!empty($row[0]) || !empty($row[2])) {
+                        $dados[] = array(
+                            'name' => isset($row[0]) ? trim($row[0]) : '',
+                            'last_name' => isset($row[1]) ? trim($row[1]) : '',
+                            'email' => isset($row[2]) ? trim($row[2]) : '',
+                            'phone' => isset($row[3]) ? trim($row[3]) : '',
+                            'price' => isset($row[4]) ? trim($row[4]) : '',
+                        );
+                    }
+                }
+
+                return $dados;
+            } else {
+                throw new Exception(\Shuchkin\SimpleXLSX::parseError());
+            }
+        } catch (Exception $e) {
+            throw new Exception('Erro ao ler arquivo Excel: ' . $e->getMessage());
+        }
+    }
+
+    private function createEmployees($dados)
+    {
+        $sucesso = 0;
+        $erros = 0;
+        $errosDetalhados = array();
+
+        foreach ($dados as $linha) {
+            // Validar campos obrigatórios
+            if (empty($linha['name']) || empty($linha['email'])) {
+                $erros++;
+                $errosDetalhados[] = "Linha com nome ou email vazio";
+                continue;
+            }
+
+            // Preparar dados para salvar
+            $employee = array(
+                'Employee' => array(
+                    'name' => $linha['name'],
+                    'last_name' => $linha['last_name'],
+                    'email' => $linha['email'],
+                    'phone' => $linha['phone'],
+                    'price' => $linha['price'],
+                )
+            );
+
+            // Criar novo registro
+            $this->Employee->create();
+
+            if ($this->Employee->save($employee)) {
+                $sucesso++;
+            } else {
+                $erros++;
+                $errosDetalhados[] = "Erro ao salvar: " . $linha['name'];
+            }
+        }
+
+        // Log de erros
+        if (!empty($errosDetalhados)) {
+            $this->log($errosDetalhados, 'import_errors');
+        }
+
+        return array(
+            'sucesso' => $sucesso,
+            'erros' => $erros,
+            'detalhes' => $errosDetalhados
+        );
     }
 }

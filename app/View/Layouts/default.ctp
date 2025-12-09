@@ -35,6 +35,8 @@
 	echo $this->Html->css('style');
 	echo $this->Html->css('dropdown');
 	echo $this->Html->css('index-employee');
+	echo $this->Html->css('modal-upload');
+	echo $this->Html->css('toast');
 
 	echo $this->fetch('meta');
 	echo $this->fetch('css');
@@ -48,11 +50,38 @@
 
 <body>
 	<?php echo $this->Flash->render(); ?>
+	<div id="toast-container"></div>
 	<div class="container">
 		<header>
-			
+			<!-- //usar para solicitações de serviço -->
 		</header>
 		<div class="content">
+
+			<?php if ($this->Session->check('Message.flash')): ?>
+				<?php $flash = $this->Session->read('Message.flash'); ?>
+				<script>
+					document.addEventListener('DOMContentLoaded', function() {
+						toast(
+							<?php echo json_encode($flash['message']); ?>,
+							'<?php
+								$type = 'info';
+								if (isset($flash['element'])) {
+									if (strpos($flash['element'], 'success') !== false) {
+										$type = 'success';
+									} elseif (strpos($flash['element'], 'error') !== false) {
+										$type = 'error';
+									} elseif (strpos($flash['element'], 'warning') !== false) {
+										$type = 'warning';
+									}
+								}
+								echo $type;
+								?>'
+						);
+					});
+				</script>
+				<?php $this->Session->delete('Message.flash'); ?>
+			<?php endif; ?>
+			
 			<?php echo $this->fetch('content'); ?>
 		</div>
 		<footer>
@@ -63,18 +92,22 @@
 			);
 
 			echo $this->Html->tag('p', 'at Mauricio Mateus');
-			**/?>
+			**/ ?>
 		</footer>
 	</div>
 
-	<?php echo $this->Html->script('https://code.jquery.com/jquery-3.6.0.min.js'); ?>
-	<?php echo $this->Html->script('https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js'); ?>
-	<?php echo $this->Html->script('https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js'); ?>
-	<?php echo $this->Html->script('mask.js'); ?>
-	<?php echo $this->Html->script('upload-image.js'); ?>
-	<?php echo $this->Html->script('dropdown.js'); ?>
-	<?php echo $this->Html->script('form_restore.js'); ?>
-	
+	<?php
+	echo $this->Html->script('https://code.jquery.com/jquery-3.6.0.min.js');
+	echo $this->Html->script('https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js');
+	echo $this->Html->script('https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js');
+	echo $this->Html->script('mask.js');
+	echo $this->Html->script('upload-image.js');
+	echo $this->Html->script('dropdown.js');
+	echo $this->Html->script('form_restore.js');
+	echo $this->Html->script('modal-upload.js');
+	echo $this->Html->script('toast.js');
+	?>
+
 </body>
 
 </html>
