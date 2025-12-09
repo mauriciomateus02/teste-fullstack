@@ -6,7 +6,7 @@ body {
 }
 
 .container{
-    width: 60%;
+    width: 70%;
 }
 
 
@@ -176,6 +176,11 @@ footer p {
     background: transparent;
 }
 
+.label-employee.coin{
+    display: flex;
+    flex-wrap: nowrap;
+}
+
 .input-phone{
     width: 63%;
     margin-bottom: 16px ;
@@ -192,7 +197,7 @@ footer p {
 }
 
 .upload-area {
-    width: 48.5%;
+    width: 52%;
     height: 120px;
     border: 1px solid #ccc;
     border-radius: 8px;

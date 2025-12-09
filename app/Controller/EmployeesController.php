@@ -238,21 +238,21 @@ class EmployeesController extends AppController
 
                 $resultado = $this->createEmployees($dados);
 
-                $this->Session->setFlash(
+                $this->Flash->success(
                     sprintf('Upload concluído! %d funcionários criados com sucesso.', $resultado['sucesso']),
                     'default',
                     array('class' => 'alert alert-success')
                 );
 
                 if ($resultado['erros'] > 0) {
-                    $this->Session->setFlash(
+                    $this->Flash->error(
                         sprintf('Atenção: %d registros não foram importados.', $resultado['erros']),
                         'default',
                         array('class' => 'alert alert-warning')
                     );
                 }
             } catch (Exception $e) {
-                $this->Session->setFlash(
+                $this->Flash->error(
                     'Erro ao processar arquivo: ' . $e->getMessage(),
                     'default',
                     array('class' => 'alert alert-danger')

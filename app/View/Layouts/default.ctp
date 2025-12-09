@@ -58,43 +58,9 @@
 		</header>
 		<div class="content">
 
-			<?php if ($this->Session->check('Message.flash')): ?>
-				<?php $flash = $this->Session->read('Message.flash'); ?>
-				<script>
-					document.addEventListener('DOMContentLoaded', function() {
-						toast(
-							<?php echo json_encode($flash['message']); ?>,
-							'<?php
-								$type = 'info';
-								if (isset($flash['element'])) {
-									if (strpos($flash['element'], 'success') !== false) {
-										$type = 'success';
-									} elseif (strpos($flash['element'], 'error') !== false) {
-										$type = 'error';
-									} elseif (strpos($flash['element'], 'warning') !== false) {
-										$type = 'warning';
-									}
-								}
-								echo $type;
-								?>'
-						);
-					});
-				</script>
-				<?php $this->Session->delete('Message.flash'); ?>
-			<?php endif; ?>
 			
 			<?php echo $this->fetch('content'); ?>
 		</div>
-		<footer>
-			<?php /*echo $this->Html->link(
-				$this->Html->image('github.png', array('alt' => 'github mauricio mateus', 'border' => '0', 'width' => '25', 'height' => '25')),
-				'https://github.com/mauriciomateus02',
-				array('target' => '_blank', 'escape' => false, 'id' => 'cake-powered')
-			);
-
-			echo $this->Html->tag('p', 'at Mauricio Mateus');
-			**/ ?>
-		</footer>
 	</div>
 
 	<?php

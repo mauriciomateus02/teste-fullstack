@@ -5,9 +5,9 @@
                 <h5 class="modal-title">Faça o upload da sua lista de servidores</h4>
             </div>
 
-            <?php echo $this->Form->create('Employee', array(
+            <?php echo $this->Form->create('Service', array(
                 'type' => 'file',
-                'url' => array('controller' => 'Employees', 'action' => 'uploadFile'),
+                'url' => array('controller' => 'Services', 'action' => 'uploadFile'),
                 'id' => 'formUploadServidores'
             )); ?>
 

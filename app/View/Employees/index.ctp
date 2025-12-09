@@ -108,7 +108,7 @@
                     <td>
                         <div class="label-employee">
                             <?php
-                           
+
                             if (!empty($emp['Service'])) {
                                 echo implode(', ', $emp['Service']);
                             } else {
@@ -118,7 +118,11 @@
                         </div>
                     </td>
                     <td>
-                        <div class="label-employee"><?php echo  $this->Html->tag('p', 'R$ ' . ($emp['Employee']['price'])); ?></div>
+                        <div class="label-employee">
+                            <?php echo  $this->Html->tag('p', 'R$ ' . ($emp['Employee']['price']), array(
+                                'class' => 'coin'
+                            )); ?>
+                        </div>
                     </td>
                     <td>
                         <div class="column-actions">
