@@ -1,8 +1,9 @@
-<?php 
+<?php
 
-App::uses('AppModel','Model');
+App::uses('AppModel', 'Model');
 
-class EmployeeModel extends AppModel{
+class EmployeeModel extends AppModel
+{
 
     public $validate = array(
         'image_url' => array(
@@ -23,7 +24,7 @@ class EmployeeModel extends AppModel{
             'rule' => 'email',
             'message' => 'Digite um e-mail válido'
         ),
-         'phone' => array(
+        'phone' => array(
             'rule' => 'notEmpty',
             'message' => 'Nome é obrigatório'
         ),
@@ -35,6 +36,14 @@ class EmployeeModel extends AppModel{
             'foreignKey' => 'employee_id'
         )
     );
-}
+    public $hasAndBelongsToMany = array(
+        'Service' => array(
+            'className' => 'Service',
+            'joinTable' => 'employee_services',
+            'foreignKey' => 'employee_id',
+            'associationForeignKey' => 'service_id'
+        )
+    );
 
-?>
+    public $actsAs = array('Containable');
+}

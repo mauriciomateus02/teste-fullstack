@@ -1,8 +1,9 @@
-<?php 
+<?php
 
-App::uses('AppModel','Model');
+App::uses('AppModel', 'Model');
 
-class ServiceModel extends AppModel{
+class ServiceModel extends AppModel
+{
 
     public $hasMany = array(
         'EmployeeService' => array(
@@ -11,6 +12,14 @@ class ServiceModel extends AppModel{
         )
     );
 
-}
+    public $hasAndBelongsToMany = array(
+        'Employee' => array(
+            'className' => 'Employee',
+            'joinTable' => 'employee_services',
+            'foreignKey' => 'service_id',
+            'associationForeignKey' => 'employee_id'
+        )
+    );
 
-?>
+    public $actsAs = array('Containable');
+}

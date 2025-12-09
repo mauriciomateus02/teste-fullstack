@@ -175,9 +175,6 @@ class EmployeesController extends AppController
     {
         $this->set('title_page', 'Prestadores de Serviço');
 
-        // $employees = $this->Employee->find('all');
-        // $this->set('employees', $employees);
-
         $conditions = array();
 
         // Se existir busca
@@ -194,10 +191,32 @@ class EmployeesController extends AppController
         $this->Paginator->settings = array(
             'conditions' => $conditions,
             'limit' => 6,
-            'order' => array('Employee.id' => 'DESC')
+            'order' => array('Employee.id' => 'DESC'),
+            'recursive' => 2
         );
 
         $employees = $this->Paginator->paginate('Employee');
+
+        $this->loadModel('EmployeeService');
+
+        foreach ($employees as $key => $emp) {
+            $employeeServices = $this->EmployeeService->find('all', [
+                'conditions' => array('EmployeeService.employee_id' => $emp['Employee']['id']),
+                'fields' => array('EmployeeService.service_id')
+            ]);
+            $serviceNames = [];
+            foreach ($employeeServices as $s) {
+                $serviceId = $s['EmployeeService']['service_id'];
+
+                $service = $this->Service->findById($serviceId);
+
+                if (!empty($service)) {
+                    $serviceNames[] = $service['Service']['name'];
+                }
+            }
+
+            $employees[$key]['Service'] = $serviceNames;
+        }
 
         $this->set(compact('employees'));
     }
